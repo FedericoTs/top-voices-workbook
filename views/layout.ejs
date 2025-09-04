@@ -13,6 +13,10 @@
       window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     </script>
     <script defer src="/_vercel/insights/script.js"></script>
+    <script type="module">
+      import { injectSpeedInsights } from 'https://unpkg.com/@vercel/speed-insights@1.2.0/dist/index.js';
+      injectSpeedInsights();
+    </script>
 </head>
 <body class="min-h-screen bg-background">
     <!-- Navigation -->
