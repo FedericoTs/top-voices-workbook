@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - Personal Brand Course</title>
+    <link href="/styles.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body class="min-h-screen bg-background">
+
+<div class="container mx-auto px-4 py-20">
+    <div class="max-w-2xl mx-auto text-center">
+        <!-- 404 Illustration -->
+        <div class="mb-12">
+            <div class="w-32 h-32 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i data-lucide="search-x" class="w-16 h-16 text-primary"></i>
+            </div>
+            <div class="text-8xl font-bold text-muted-foreground/20 mb-4">404</div>
+        </div>
+        
+        <!-- Content -->
+        <h1 class="text-4xl font-heading font-bold mb-6">
+            Page Not Found
+        </h1>
+        <p class="text-xl text-muted-foreground mb-12">
+            Sorry, we couldn't find the page you're looking for. 
+            Let's get you back on track with your brand building journey.
+        </p>
+        
+        <!-- Actions -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <a href="/" class="btn-primary text-lg h-12 px-8">
+                <i data-lucide="home" class="w-5 h-5 mr-2"></i>
+                Go Home
+            </a>
+            <a href="/course/1" class="btn-outline text-lg h-12 px-8">
+                <i data-lucide="book-open" class="w-5 h-5 mr-2"></i>
+                Start Course
+            </a>
+            <a href="/toc" class="btn-outline text-lg h-12 px-8">
+                <i data-lucide="list" class="w-5 h-5 mr-2"></i>
+                Browse Contents
+            </a>
+        </div>
+        
+        <!-- Popular Links -->
+        <div class="card p-8 text-left max-w-md mx-auto">
+            <h3 class="font-heading font-bold text-lg mb-6 text-center">Popular Chapters</h3>
+            <div class="space-y-4">
+                <a href="/course/1" class="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors">
+                    <div class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center text-sm font-bold">1</div>
+                    <span>Introduction - The Two Paths</span>
+                </a>
+                <a href="/course/8" class="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors">
+                    <div class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center text-sm font-bold">8</div>
+                    <span>Choosing the Right Platforms</span>
+                </a>
+                <a href="/course/14" class="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors">
+                    <div class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center text-sm font-bold">14</div>
+                    <span>Define Your Needs Before Hiring</span>
+                </a>
+                <a href="/course/23" class="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 transition-colors">
+                    <div class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center text-sm font-bold">23</div>
+                    <span>Trust Before Transactions</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+</script>
+</body>
+</html>

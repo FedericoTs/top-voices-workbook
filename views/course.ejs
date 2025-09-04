@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter <%= currentChapter %>: <%= chapter?.title %> - Personal Brand Course</title>
+    <link href="/styles.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <meta name="description" content="Master personal branding with this comprehensive course covering strategy, content creation, team building, and monetization.">
+</head>
+<body class="min-h-screen bg-background">
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div class="container mx-auto px-4">
+            <div class="flex h-16 items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <a href="/" class="flex items-center space-x-2 font-heading font-bold text-xl">
+                        <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                            <i data-lucide="bookmark" class="w-4 h-4 text-primary-foreground"></i>
+                        </div>
+                        <span>Personal Brand Course</span>
+                    </a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <a href="/toc" class="btn-outline text-sm">
+                        <i data-lucide="list" class="w-4 h-4 mr-2"></i>
+                        Table of Contents
+                    </a>
+                    <button id="theme-toggle" class="btn-outline p-2">
+                        <i data-lucide="sun" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+<div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <aside class="w-80 border-r bg-muted/30 overflow-y-auto sticky top-16 h-[calc(100vh-4rem)]">
+        <div class="p-6">
+            <!-- Progress -->
+            <div class="mb-6">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm font-medium">Course Progress</span>
+                    <span class="text-sm text-muted-foreground"><%= progress || 0 %>%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-indicator" style="transform: translateX(-<%= 100 - (progress || 0) %>%)"></div>
+                </div>
+            </div>
+            
+            <!-- Table of Contents -->
+            <nav class="space-y-1">
+                <div class="text-sm font-semibold text-muted-foreground mb-3 uppercase tracking-wide">
+                    Course Contents
+                </div>
+                
+                <% toc.forEach(section => { %>
+                    <div class="mb-4">
+                        <div class="text-sm font-medium text-foreground mb-2 px-3 py-2 rounded-md bg-muted/50">
+                            <%= section.title %>
+                        </div>
+                        <div class="space-y-1 ml-2">
+                            <% section.chapters.forEach(chap => { %>
+                                <a href="/course/<%= chap.id %>" 
+                                   class="nav-item flex items-center px-3 py-2 text-sm rounded-md transition-colors <%= currentChapter === chap.id ? 'nav-active' : '' %>">
+                                    <span class="w-6 h-6 rounded-full bg-muted flex items-center justify-center text-xs mr-3 flex-shrink-0">
+                                        <%= chap.id %>
+                                    </span>
+                                    <span class="line-clamp-2"><%= chap.title %></span>
+                                </a>
+                            <% }); %>
+                        </div>
+                    </div>
+                <% }); %>
+            </nav>
+        </div>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="flex-1">
+        <% if (chapter) { %>
+            <article class="max-w-4xl mx-auto px-8 py-12">
+                <!-- Chapter Header -->
+                <header class="mb-12">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
+                            <span class="font-bold text-primary-foreground"><%= currentChapter %></span>
+                        </div>
+                        <div>
+                            <div class="text-sm text-muted-foreground mb-1"><%= chapter.section %></div>
+                            <h1 class="text-4xl font-heading font-bold text-foreground">
+                                <%= chapter.title %>
+                            </h1>
+                        </div>
+                    </div>
+                    
+                    <!-- Chapter Meta -->
+                    <div class="flex items-center gap-6 text-sm text-muted-foreground">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="clock" class="w-4 h-4"></i>
+                            <span>~15 min read</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="bookmark" class="w-4 h-4"></i>
+                            <span>Chapter <%= currentChapter %> of <%= toc.reduce((sum, section) => sum + section.chapters.length, 0) %></span>
+                        </div>
+                    </div>
+                </header>
+                
+                <!-- Chapter Content -->
+                <div class="chapter-content">
+                    <%- chapter.html %>
+                </div>
+                
+                <!-- Navigation -->
+                <nav class="flex items-center justify-between pt-12 mt-12 border-t">
+                    <div>
+                        <% if (prevChapter) { %>
+                            <a href="/course/<%= prevChapter.id %>" class="btn-outline group">
+                                <i data-lucide="chevron-left" class="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform"></i>
+                                <div class="text-left">
+                                    <div class="text-xs text-muted-foreground">Previous</div>
+                                    <div class="text-sm font-medium"><%= prevChapter.title.substring(0, 30) %>...</div>
+                                </div>
+                            </a>
+                        <% } %>
+                    </div>
+                    
+                    <div class="text-center">
+                        <a href="/toc" class="btn-secondary">
+                            <i data-lucide="list" class="w-4 h-4 mr-2"></i>
+                            Table of Contents
+                        </a>
+                    </div>
+                    
+                    <div>
+                        <% if (nextChapter) { %>
+                            <a href="/course/<%= nextChapter.id %>" class="btn-primary group">
+                                <div class="text-right">
+                                    <div class="text-xs text-primary-foreground/80">Next</div>
+                                    <div class="text-sm font-medium"><%= nextChapter.title.substring(0, 30) %>...</div>
+                                </div>
+                                <i data-lucide="chevron-right" class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+                        <% } %>
+                    </div>
+                </nav>
+            </article>
+        <% } else { %>
+            <div class="flex items-center justify-center h-96">
+                <div class="text-center">
+                    <i data-lucide="book-x" class="w-16 h-16 text-muted-foreground mx-auto mb-4"></i>
+                    <h2 class="text-2xl font-heading font-bold mb-2">Chapter Not Found</h2>
+                    <p class="text-muted-foreground mb-6">The requested chapter could not be found.</p>
+                    <a href="/course/1" class="btn-primary">
+                        <i data-lucide="home" class="w-4 h-4 mr-2"></i>
+                        Go to First Chapter
+                    </a>
+                </div>
+            </div>
+        <% } %>
+    </main>
+</div>
+
+<!-- Reading Progress Indicator -->
+<div class="fixed bottom-6 right-6 z-50">
+    <div class="card p-4 shadow-lg">
+        <div class="flex items-center space-x-3">
+            <div class="relative w-12 h-12">
+                <svg class="w-12 h-12 transform -rotate-90" viewBox="0 0 36 36">
+                    <path class="text-muted stroke-current" stroke-dasharray="100, 100" 
+                          d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" 
+                          fill="none" stroke-width="2"/>
+                    <path id="reading-progress" class="text-primary stroke-current" stroke-dasharray="0, 100" 
+                          d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" 
+                          fill="none" stroke-width="2"/>
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <span class="text-xs font-bold"><%= currentChapter %></span>
+                </div>
+            </div>
+            <div class="text-sm">
+                <div class="font-medium">Chapter <%= currentChapter %></div>
+                <div class="text-muted-foreground text-xs"><%= progress || 0 %>% complete</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+    
+    // Theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    
+    themeToggle?.addEventListener('click', () => {
+        html.classList.toggle('dark');
+        const icon = themeToggle.querySelector('[data-lucide]');
+        icon.setAttribute('data-lucide', html.classList.contains('dark') ? 'moon' : 'sun');
+        lucide.createIcons();
+        
+        // Save preference
+        localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+    
+    // Load saved theme
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        html.classList.add('dark');
+        const icon = themeToggle?.querySelector('[data-lucide]');
+        if (icon) {
+            icon.setAttribute('data-lucide', 'moon');
+            lucide.createIcons();
+        }
+    }
+    
+    // Reading progress tracker
+    function updateReadingProgress() {
+        const article = document.querySelector('article');
+        if (!article) return;
+        
+        const scrollTop = window.pageYOffset;
+        const docHeight = article.offsetHeight;
+        const winHeight = window.innerHeight;
+        const scrollPercent = scrollTop / (docHeight - winHeight);
+        const scrollPercentRounded = Math.round(scrollPercent * 100);
+        
+        const progressPath = document.getElementById('reading-progress');
+        if (progressPath) {
+            const dashArray = Math.min(100, Math.max(0, scrollPercentRounded));
+            progressPath.style.strokeDasharray = `${dashArray}, 100`;
+        }
+    }
+    
+    // Throttled scroll handler
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                updateReadingProgress();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+    
+    // Table of contents smooth scrolling
+    document.querySelectorAll('.chapter-content h2, .chapter-content h3').forEach(heading => {
+        heading.style.scrollMarginTop = '6rem';
+    });
+</script>
+</body>
+</html>

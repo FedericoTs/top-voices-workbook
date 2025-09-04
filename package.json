@@ -1,0 +1,28 @@
+{
+  "name": "personal-brand-course-webapp",
+  "version": "1.0.0",
+  "description": "Modern web app for Personal Brand Course with Tailwind CSS and shadcn/ui",
+  "main": "server.js",
+  "scripts": {
+    "dev": "concurrently \"npm run tailwind:watch\" \"nodemon server.js\"",
+    "start": "node server.js",
+    "build": "npm run tailwind:build",
+    "tailwind:watch": "tailwindcss -i ./src/input.css -o ./public/styles.css --watch",
+    "tailwind:build": "tailwindcss -i ./src/input.css -o ./public/styles.css --minify",
+    "postinstall": "npm run build"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "ejs": "^3.1.9",
+    "marked": "^12.0.0",
+    "highlight.js": "^11.9.0",
+    "fs": "0.0.1-security",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0",
+    "nodemon": "^3.0.2",
+    "concurrently": "^8.2.2",
+    "@tailwindcss/typography": "^0.5.10"
+  }
+}
