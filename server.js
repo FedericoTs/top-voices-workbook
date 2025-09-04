@@ -28,7 +28,7 @@ app.use(express.static('public'));
 // Course content parser
 function parseCourseContent() {
   try {
-    const coursePath = path.join(__dirname, '..', 'Personal_Brand_Course_Enhanced.md');
+    const coursePath = path.join(__dirname, 'Personal_Brand_Course_Enhanced.md');
     const content = fs.readFileSync(coursePath, 'utf8');
     
     // Define section structure based on timestamps
