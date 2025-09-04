@@ -849,6 +849,14 @@ body {
   transition-duration: 150ms;
 }
 
+.pointer-events-none {
+  pointer-events: none;
+}
+
+.pointer-events-auto {
+  pointer-events: auto;
+}
+
 .fixed {
   position: fixed;
 }
@@ -877,10 +885,6 @@ body {
   bottom: 1.5rem;
 }
 
-.bottom-8 {
-  bottom: 2rem;
-}
-
 .left-20 {
   left: 5rem;
 }
@@ -893,10 +897,6 @@ body {
   right: 1.5rem;
 }
 
-.right-8 {
-  right: 2rem;
-}
-
 .top-0 {
   top: 0px;
 }
@@ -907,10 +907,6 @@ body {
 
 .top-20 {
   top: 5rem;
-}
-
-.right-4 {
-  right: 1rem;
 }
 
 .z-0 {
@@ -927,6 +923,10 @@ body {
 
 .z-50 {
   z-index: 50;
+}
+
+.z-30 {
+  z-index: 30;
 }
 
 .mx-auto {
