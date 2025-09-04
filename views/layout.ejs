@@ -24,15 +24,17 @@
         <div class="container mx-auto px-4">
             <div class="flex h-16 items-center justify-between">
                 <div class="flex items-center space-x-4">
-                    <a href="/" class="flex items-center space-x-2 font-heading font-bold text-xl">
+                    <a href="/" class="flex items-center space-x-2 font-heading font-bold text-lg lg:text-xl">
                         <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
                             <i data-lucide="bookmark" class="w-4 h-4 text-primary-foreground"></i>
                         </div>
-                        <span>Personal Brand Course</span>
+                        <span class="hidden sm:inline">Personal Brand Course</span>
+                        <span class="sm:hidden">PBC</span>
                     </a>
                 </div>
                 
-                <div class="flex items-center space-x-4">
+                <!-- Desktop Navigation -->
+                <div class="hidden lg:flex items-center space-x-4">
                     <a href="/toc" class="btn-outline text-sm">
                         <i data-lucide="list" class="w-4 h-4 mr-2"></i>
                         Table of Contents
@@ -40,6 +42,49 @@
                     <button id="theme-toggle" class="btn-outline p-2">
                         <i data-lucide="sun" class="w-4 h-4"></i>
                     </button>
+                </div>
+                
+                <!-- Mobile Navigation -->
+                <div class="lg:hidden flex items-center space-x-2">
+                    <button id="theme-toggle-mobile" class="btn-outline p-2">
+                        <i data-lucide="sun" class="w-4 h-4"></i>
+                    </button>
+                    <button id="mobile-menu-toggle" class="btn-outline p-2">
+                        <i data-lucide="menu" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 z-40 lg:hidden hidden">
+            <div class="fixed inset-0 bg-background/80 backdrop-blur-sm" id="mobile-menu-backdrop"></div>
+            <div class="fixed right-0 top-0 h-full w-80 max-w-sm bg-background border-l shadow-xl transform translate-x-full transition-transform duration-300 ease-in-out" id="mobile-menu-panel">
+                <div class="flex items-center justify-between p-4 border-b">
+                    <h2 class="font-heading font-bold text-lg">Menu</h2>
+                    <button id="mobile-menu-close" class="btn-outline p-2">
+                        <i data-lucide="x" class="w-4 h-4"></i>
+                    </button>
+                </div>
+                <div class="p-4 space-y-4">
+                    <a href="/" class="block p-3 rounded-lg hover:bg-muted transition-colors">
+                        <div class="flex items-center space-x-3">
+                            <i data-lucide="home" class="w-5 h-5"></i>
+                            <span>Home</span>
+                        </div>
+                    </a>
+                    <a href="/toc" class="block p-3 rounded-lg hover:bg-muted transition-colors">
+                        <div class="flex items-center space-x-3">
+                            <i data-lucide="list" class="w-5 h-5"></i>
+                            <span>Table of Contents</span>
+                        </div>
+                    </a>
+                    <a href="/course/1" class="block p-3 rounded-lg hover:bg-muted transition-colors">
+                        <div class="flex items-center space-x-3">
+                            <i data-lucide="book-open" class="w-5 h-5"></i>
+                            <span>Start Reading</span>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -62,7 +107,7 @@
                     </p>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <h4 class="font-semibold mb-4 text-primary">Quick Links</h4>
                     <div class="space-y-2 text-sm">
                         <a href="/course/1" class="block text-muted-foreground hover:text-foreground transition-colors">Start Course</a>
                         <a href="/toc" class="block text-muted-foreground hover:text-foreground transition-colors">Table of Contents</a>
@@ -70,7 +115,7 @@
                     </div>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Course Sections</h4>
+                    <h4 class="font-semibold mb-4 text-primary">Course Sections</h4>
                     <div class="space-y-2 text-sm text-muted-foreground">
                         <div>• Brand Foundation</div>
                         <div>• Content Strategy</div>
@@ -90,30 +135,94 @@
         // Initialize Lucide icons
         lucide.createIcons();
         
-        // Theme toggle
+        // Theme toggle functionality
         const themeToggle = document.getElementById('theme-toggle');
+        const themeToggleMobile = document.getElementById('theme-toggle-mobile');
         const html = document.documentElement;
         
-        themeToggle?.addEventListener('click', () => {
+        function toggleTheme() {
             html.classList.toggle('dark');
-            const icon = themeToggle.querySelector('[data-lucide]');
-            icon.setAttribute('data-lucide', html.classList.contains('dark') ? 'moon' : 'sun');
+            const isDark = html.classList.contains('dark');
+            const iconName = isDark ? 'moon' : 'sun';
+            
+            // Update both desktop and mobile icons
+            [themeToggle, themeToggleMobile].forEach(button => {
+                if (button) {
+                    const icon = button.querySelector('[data-lucide]');
+                    if (icon) {
+                        icon.setAttribute('data-lucide', iconName);
+                    }
+                }
+            });
+            
             lucide.createIcons();
             
             // Save preference
-            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
-        });
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+        
+        // Add event listeners to both theme toggle buttons
+        themeToggle?.addEventListener('click', toggleTheme);
+        themeToggleMobile?.addEventListener('click', toggleTheme);
         
         // Load saved theme
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             html.classList.add('dark');
-            const icon = themeToggle?.querySelector('[data-lucide]');
-            if (icon) {
-                icon.setAttribute('data-lucide', 'moon');
-                lucide.createIcons();
-            }
+            [themeToggle, themeToggleMobile].forEach(button => {
+                if (button) {
+                    const icon = button.querySelector('[data-lucide]');
+                    if (icon) {
+                        icon.setAttribute('data-lucide', 'moon');
+                    }
+                }
+            });
+            lucide.createIcons();
         }
+        
+        // Mobile menu functionality
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuPanel = document.getElementById('mobile-menu-panel');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
+        
+        function openMobileMenu() {
+            mobileMenu.classList.remove('hidden');
+            // Small delay to ensure the menu is visible before animating
+            requestAnimationFrame(() => {
+                mobileMenuPanel.classList.remove('translate-x-full');
+                document.body.style.overflow = 'hidden';
+            });
+        }
+        
+        function closeMobileMenu() {
+            mobileMenuPanel.classList.add('translate-x-full');
+            document.body.style.overflow = '';
+            // Wait for animation to complete before hiding
+            setTimeout(() => {
+                mobileMenu.classList.add('hidden');
+            }, 300);
+        }
+        
+        // Mobile menu event listeners
+        mobileMenuToggle?.addEventListener('click', openMobileMenu);
+        mobileMenuClose?.addEventListener('click', closeMobileMenu);
+        mobileMenuBackdrop?.addEventListener('click', closeMobileMenu);
+        
+        // Close mobile menu on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+                closeMobileMenu();
+            }
+        });
+        
+        // Close mobile menu when navigating to a new page
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                closeMobileMenu();
+            });
+        });
         
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {

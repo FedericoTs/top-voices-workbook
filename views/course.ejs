@@ -42,8 +42,25 @@
     </nav>
 
 <div class="flex min-h-screen">
+    <!-- Mobile Sidebar Toggle -->
+    <div id="mobile-sidebar-toggle" class="fixed bottom-6 left-4 z-50 lg:hidden">
+        <button class="btn-primary p-3 rounded-full shadow-lg hover:scale-105 transition-transform group">
+            <i data-lucide="list" class="w-5 h-5"></i>
+        </button>
+        <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-foreground text-background text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+            Chapters
+        </div>
+    </div>
+    
     <!-- Sidebar -->
-    <aside class="w-80 border-r bg-muted/30 overflow-y-auto sticky top-16 h-[calc(100vh-4rem)]">
+    <aside id="course-sidebar" class="fixed inset-y-0 left-0 z-40 w-80 transform -translate-x-full transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0 lg:sticky lg:top-16 lg:h-[calc(100vh-4rem)] border-r bg-muted/30 overflow-y-auto">
+        <!-- Mobile Sidebar Header -->
+        <div class="lg:hidden flex items-center justify-between p-4 border-b bg-background">
+            <h2 class="font-heading font-bold text-lg">Course Contents</h2>
+            <button id="mobile-sidebar-close" class="btn-outline p-2">
+                <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+        </div>
         <div class="p-6">
             <!-- Progress -->
             <div class="mb-6">
@@ -84,10 +101,13 @@
         </div>
     </aside>
     
+    <!-- Sidebar Backdrop for Mobile -->
+    <div id="sidebar-backdrop" class="fixed inset-0 bg-background/80 backdrop-blur-sm z-30 lg:hidden hidden"></div>
+    
     <!-- Main Content -->
-    <main class="flex-1">
+    <main class="flex-1 w-full lg:w-auto">
         <% if (chapter) { %>
-            <article class="max-w-4xl mx-auto px-8 py-12">
+            <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-12">
                 <!-- Chapter Header -->
                 <header class="mb-12">
                     <div class="flex items-center gap-4 mb-6">
@@ -170,8 +190,8 @@
     </main>
 </div>
 
-<!-- Reading Progress Indicator -->
-<div class="fixed bottom-6 right-6 z-50">
+<!-- Reading Progress Indicator - Desktop Only -->
+<div class="fixed bottom-6 right-6 z-50 hidden lg:block">
     <div class="card p-4 shadow-lg">
         <div class="flex items-center space-x-3">
             <div class="relative w-12 h-12">
@@ -223,6 +243,45 @@
             lucide.createIcons();
         }
     }
+    
+    // Mobile sidebar functionality
+    const mobileSidebarToggle = document.querySelector('#mobile-sidebar-toggle button');
+    const courseSidebar = document.getElementById('course-sidebar');
+    const mobileSidebarClose = document.getElementById('mobile-sidebar-close');
+    const sidebarBackdrop = document.getElementById('sidebar-backdrop');
+    
+    function openCourseSidebar() {
+        sidebarBackdrop.classList.remove('hidden');
+        courseSidebar.classList.remove('-translate-x-full');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeCourseSidebar() {
+        courseSidebar.classList.add('-translate-x-full');
+        sidebarBackdrop.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+    
+    // Mobile sidebar event listeners
+    mobileSidebarToggle?.addEventListener('click', openCourseSidebar);
+    mobileSidebarClose?.addEventListener('click', closeCourseSidebar);
+    sidebarBackdrop?.addEventListener('click', closeCourseSidebar);
+    
+    // Close sidebar on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !sidebarBackdrop.classList.contains('hidden')) {
+            closeCourseSidebar();
+        }
+    });
+    
+    // Close sidebar when clicking on navigation links (mobile)
+    document.querySelectorAll('#course-sidebar a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth < 1024) { // Only on mobile
+                closeCourseSidebar();
+            }
+        });
+    });
     
     // Reading progress tracker
     function updateReadingProgress() {

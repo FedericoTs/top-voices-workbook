@@ -45,8 +45,8 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui'],
-        heading: ['Cal Sans', 'Inter', 'ui-sans-serif', 'system-ui'],
+        sans: ['DM Sans', 'Inter', 'ui-sans-serif', 'system-ui'],
+        heading: ['DM Sans', 'Cal Sans', 'Inter', 'ui-sans-serif', 'system-ui'],
       },
       animation: {
         "fade-in": "fade-in 0.5s ease-in-out",

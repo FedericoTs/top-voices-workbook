@@ -41,26 +41,26 @@
 <section class="relative overflow-hidden bg-gradient-to-br from-background via-background to-muted/20">
     <!-- Background Image -->
     <div class="absolute inset-0 z-0">
-        <img src="/caleb-photo.webp" alt="Caleb Ralston" class="w-full h-full object-cover object-center">
+        <img src="/caleb-photo.webp" alt="Caleb Ralston" class="w-full h-full object-cover object-left-center sm:object-center">
     </div>
     
     <!-- Content -->
     <div class="relative z-10 container mx-auto px-4 py-20">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-center">
             <!-- Left side - Text Content -->
             <div class="animate-on-scroll">
                 <div class="badge bg-primary/10 text-primary border-primary/20 mb-6">
                     📝 Complete Brand Building Workbook
                 </div>
                     
-                <h1 class="text-4xl lg:text-6xl font-heading font-bold leading-tight mb-6">
+                <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-heading font-bold leading-tight mb-6">
                     Master Your
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">
                         Personal Brand
                     </span>
                 </h1>
                     
-                <p class="text-xl text-muted-foreground mb-8 leading-relaxed">
+                <p class="text-base sm:text-lg lg:text-xl text-muted-foreground mb-8 leading-relaxed">
                     Transform your expertise into a powerful personal brand with these comprehensive notes 
                     covering brand strategy, content creation, team building, and monetization.
                 </p>
@@ -80,13 +80,13 @@
                     </div>
                 </div>
                 
-                <div class="flex flex-col sm:flex-row gap-4 relative z-30">
-                    <a href="/course/1" class="btn-primary text-lg h-14 px-10 relative z-30">
-                        <i data-lucide="book-open" class="w-5 h-5 mr-2"></i>
+                <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 relative z-30">
+                    <a href="/course/1" class="btn-primary text-base sm:text-lg h-12 sm:h-14 px-6 sm:px-10 relative z-30 justify-center">
+                        <i data-lucide="book-open" class="w-4 sm:w-5 h-4 sm:h-5 mr-2"></i>
                         Start Reading
                     </a>
-                    <a href="/toc" class="btn-outline text-lg h-14 px-10 relative z-30">
-                        <i data-lucide="list" class="w-5 h-5 mr-2"></i>
+                    <a href="/toc" class="btn-outline text-base sm:text-lg h-12 sm:h-14 px-6 sm:px-10 relative z-30 justify-center">
+                        <i data-lucide="list" class="w-4 sm:w-5 h-4 sm:h-5 mr-2"></i>
                         View Contents
                     </a>
                 </div>
@@ -97,8 +97,8 @@
         </div>
     </div>
     
-    <!-- YouTube Attribution Box -->
-    <div class="absolute bottom-20 z-10 w-full pointer-events-none">
+    <!-- YouTube Attribution Box - Desktop Only -->
+    <div class="absolute bottom-20 z-10 w-full pointer-events-none hidden sm:block">
         <div class="container mx-auto px-4">
             <div class="flex justify-end">
                 <div class="rounded-xl p-4 bg-white/90 backdrop-blur-md shadow-xl border border-white/20 max-w-sm pointer-events-auto">
@@ -134,19 +134,51 @@
     <div class="absolute bottom-20 left-20 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
 </section>
 
+<!-- Mobile YouTube Attribution Box -->
+<section class="sm:hidden py-6">
+    <div class="container mx-auto px-4">
+        <div class="flex justify-center">
+            <div class="rounded-xl p-4 bg-white/90 backdrop-blur-md shadow-xl border border-white/20 max-w-sm w-full">
+                <!-- Compact Header -->
+                <div class="flex items-center justify-between mb-3">
+                    <a href="https://www.calebralston.com/" target="_blank" rel="noopener noreferrer">
+                        <img src="/RAL_Logo_Primary-Horizontal_Dark_Transparent.webp" alt="RAL Logo" class="h-6 hover:opacity-80 transition-opacity">
+                    </a>
+                    <div class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-green-500/20 text-green-700 border border-green-500/30">
+                        ✨ FREE
+                    </div>
+                </div>
+                
+                <!-- Compact Content -->
+                <p class="text-xs text-gray-600 mb-3 leading-relaxed">
+                    Based on Caleb's 6-hour YouTube masterclass
+                </p>
+                
+                <a href="https://www.youtube.com/watch?v=Ch4Sl0POBhU&ab_channel=CalebRalston" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="inline-flex items-center justify-center w-full px-3 py-2 text-xs font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors duration-200">
+                    <i data-lucide="youtube" class="w-3 h-3 mr-1"></i>
+                    Watch Original
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Workbook Sections -->
 <section class="py-20 bg-muted/30">
     <div class="container mx-auto px-4">
         <div class="text-center mb-16 animate-on-scroll">
-            <h2 class="text-3xl lg:text-4xl font-heading font-bold mb-4">
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold mb-4">
                 Complete Brand Building Notes
             </h2>
-            <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p class="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto">
                 Everything from Caleb's masterclass - structured notes to build, grow, and monetize your personal brand
             </p>
         </div>
         
-        <div class="grid lg:grid-cols-4 gap-8 stagger-in">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 stagger-in">
             <div class="card p-6 animate-on-scroll hover:shadow-lg transition-all duration-300">
                 <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                     <i data-lucide="target" class="w-6 h-6 text-primary"></i>
@@ -198,15 +230,15 @@
 <section class="py-20">
     <div class="container mx-auto px-4">
         <div class="text-center mb-16 animate-on-scroll">
-            <h2 class="text-3xl lg:text-4xl font-heading font-bold mb-4">
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold mb-4">
                 Start Reading
             </h2>
-            <p class="text-xl text-muted-foreground">
+            <p class="text-base sm:text-lg lg:text-xl text-muted-foreground">
                 Browse the structured notes from the first chapters
             </p>
         </div>
         
-        <div class="grid lg:grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
             <% chapters.slice(0, 6).forEach((chapter, index) => { %>
             <div class="card p-6 animate-on-scroll hover:shadow-lg transition-all duration-300 group">
                 <div class="flex items-start space-x-4">
@@ -246,7 +278,7 @@
 <!-- Key Features -->
 <section class="py-20 bg-gradient-to-br from-primary/5 to-blue-500/5">
     <div class="container mx-auto px-4">
-        <div class="grid lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             <div class="text-center animate-on-scroll">
                 <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                     <i data-lucide="brain" class="w-8 h-8 text-primary"></i>
@@ -284,19 +316,19 @@
 <section class="py-20">
     <div class="container mx-auto px-4 text-center">
         <div class="max-w-2xl mx-auto animate-on-scroll">
-            <h2 class="text-3xl lg:text-4xl font-heading font-bold mb-6">
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold mb-6">
                 Ready to Build Your Brand?
             </h2>
-            <p class="text-xl text-muted-foreground mb-8">
+            <p class="text-base sm:text-lg lg:text-xl text-muted-foreground mb-8">
                 Join thousands of entrepreneurs who have transformed their expertise into powerful personal brands.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="/course/1" class="btn-primary text-lg h-14 px-8">
-                    <i data-lucide="book-open" class="w-5 h-5 mr-2"></i>
+            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+                <a href="/course/1" class="btn-primary text-base sm:text-lg h-12 sm:h-14 px-6 sm:px-8 justify-center">
+                    <i data-lucide="book-open" class="w-4 sm:w-5 h-4 sm:h-5 mr-2"></i>
                     Start Reading Notes
                 </a>
-                <a href="/toc" class="btn-outline text-lg h-14 px-8">
-                    <i data-lucide="eye" class="w-5 h-5 mr-2"></i>
+                <a href="/toc" class="btn-outline text-base sm:text-lg h-12 sm:h-14 px-6 sm:px-8 justify-center">
+                    <i data-lucide="eye" class="w-4 sm:w-5 h-4 sm:h-5 mr-2"></i>
                     Preview Workbook Content
                 </a>
             </div>
@@ -316,7 +348,7 @@
                     </p>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <h4 class="font-semibold mb-4 text-primary">Quick Links</h4>
                     <div class="space-y-2 text-sm">
                         <a href="/course/1" class="block text-muted-foreground hover:text-foreground transition-colors">Start Reading</a>
                         <a href="/toc" class="block text-muted-foreground hover:text-foreground transition-colors">Table of Contents</a>
@@ -324,7 +356,7 @@
                     </div>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Workbook Sections</h4>
+                    <h4 class="font-semibold mb-4 text-primary">Workbook Sections</h4>
                     <div class="space-y-2 text-sm text-muted-foreground">
                         <div>• Brand Foundation</div>
                         <div>• Content Strategy</div>
