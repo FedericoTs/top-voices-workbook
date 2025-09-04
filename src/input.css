@@ -181,6 +181,24 @@
   .text-elegant-3xl {
     @apply text-2xl sm:text-3xl font-bold;
   }
+  
+  /* Hero background image positioning */
+  .hero-bg-mobile {
+    object-position: 25% center;
+    object-fit: cover;
+  }
+  
+  @media (min-width: 480px) {
+    .hero-bg-mobile {
+      object-position: 30% center;
+    }
+  }
+  
+  @media (min-width: 640px) {
+    .hero-bg-mobile {
+      object-position: center center;
+    }
+  }
 }
 
 /* Google Fonts */
