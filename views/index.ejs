@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Top Voices Workbook - Master Your Brand Strategy</title>
     <link href="/styles.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <meta name="description" content="Master personal branding with these comprehensive notes from Caleb Ralston's YouTube masterclass covering strategy, content creation, team building, and monetization.">
@@ -24,10 +25,6 @@
                 </div>
                 
                 <div class="flex items-center space-x-4">
-                    <a href="/toc" class="btn-outline text-sm">
-                        <i data-lucide="list" class="w-4 h-4 mr-2"></i>
-                        Table of Contents
-                    </a>
                     <button id="theme-toggle" class="btn-outline p-2">
                         <i data-lucide="sun" class="w-4 h-4"></i>
                     </button>
@@ -86,7 +83,7 @@
                     </a>
                     <a href="/toc" class="btn-outline text-lg h-14 px-10">
                         <i data-lucide="list" class="w-5 h-5 mr-2"></i>
-                        View Notes
+                        View Contents
                     </a>
                 </div>
             </div>
@@ -97,11 +94,15 @@
     </div>
     
     <!-- YouTube Attribution Box -->
-    <div class="absolute bottom-8 right-8 z-20 max-w-sm">
-        <div class="rounded-xl p-4 bg-white/90 backdrop-blur-md shadow-xl border border-white/20">
+    <div class="absolute bottom-20 z-20 w-full">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-end">
+                <div class="rounded-xl p-4 bg-white/90 backdrop-blur-md shadow-xl border border-white/20 max-w-sm">
             <!-- Compact Header -->
             <div class="flex items-center justify-between mb-3">
-                <img src="/RAL_Logo_Primary-Horizontal_Dark_Transparent.webp" alt="RAL Logo" class="h-6">
+                <a href="https://www.calebralston.com/" target="_blank" rel="noopener noreferrer">
+                    <img src="/RAL_Logo_Primary-Horizontal_Dark_Transparent.webp" alt="RAL Logo" class="h-6 hover:opacity-80 transition-opacity">
+                </a>
                 <div class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-green-500/20 text-green-700 border border-green-500/30">
                     ✨ FREE
                 </div>
@@ -119,6 +120,8 @@
                 <i data-lucide="youtube" class="w-3 h-3 mr-1"></i>
                 Watch Original
             </a>
+                </div>
+            </div>
         </div>
     </div>
     
