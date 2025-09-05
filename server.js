@@ -9,13 +9,17 @@ const crypto = require('crypto');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Cache configuration
-const CACHE_DIR = path.join(__dirname, 'thumbnail-cache');
+// Cache configuration - use /tmp for serverless environments
+const CACHE_DIR = process.env.VERCEL ? '/tmp/thumbnail-cache' : path.join(__dirname, 'thumbnail-cache');
 const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
 
-// Ensure cache directory exists
-if (!fs.existsSync(CACHE_DIR)) {
-  fs.mkdirSync(CACHE_DIR, { recursive: true });
+// Ensure cache directory exists (with error handling for serverless)
+try {
+  if (!fs.existsSync(CACHE_DIR)) {
+    fs.mkdirSync(CACHE_DIR, { recursive: true });
+  }
+} catch (error) {
+  console.warn('Could not create cache directory:', error.message);
 }
 
 // Load workbooks configuration
@@ -345,9 +349,18 @@ app.get('/api/thumbnail', async (req, res) => {
 
     await browser.close();
 
-    // Save to cache
-    fs.writeFileSync(cachePath, screenshot);
-    console.log('Thumbnail cached at:', cachePath);
+    // Save to cache (with error handling)
+    try {
+      // Ensure cache directory exists before writing
+      if (!fs.existsSync(CACHE_DIR)) {
+        fs.mkdirSync(CACHE_DIR, { recursive: true });
+      }
+      fs.writeFileSync(cachePath, screenshot);
+      console.log('Thumbnail cached at:', cachePath);
+    } catch (cacheError) {
+      console.warn('Could not cache thumbnail:', cacheError.message);
+      // Continue without caching - the thumbnail will still be served
+    }
 
     // Set headers for image response
     res.set({
