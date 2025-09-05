@@ -14,3 +14,4 @@ yarn-error.log*
 *~
 .backup
 tailwind.config.js.backup
+thumbnail-cache/

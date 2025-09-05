@@ -3,9 +3,20 @@ const fs = require('fs');
 const path = require('path');
 const { marked } = require('marked');
 const hljs = require('highlight.js');
+const puppeteer = require('puppeteer');
+const crypto = require('crypto');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Cache configuration
+const CACHE_DIR = path.join(__dirname, 'thumbnail-cache');
+const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+
+// Ensure cache directory exists
+if (!fs.existsSync(CACHE_DIR)) {
+  fs.mkdirSync(CACHE_DIR, { recursive: true });
+}
 
 // Load workbooks configuration
 const workbooksConfig = JSON.parse(fs.readFileSync(path.join(__dirname, 'content', 'workbooks-config.json'), 'utf8'));
@@ -243,6 +254,115 @@ app.get('/api/workbooks/:workbookSlug/chapters', (req, res) => {
     })),
     totalChapters: workbook.chapters.length
   });
+});
+
+// Helper function to generate cache key
+function generateCacheKey(url, width, height) {
+  const hash = crypto.createHash('md5');
+  hash.update(`${url}-${width}-${height}`);
+  return hash.digest('hex');
+}
+
+// Helper function to check if cached file is valid
+function isCacheValid(filePath) {
+  try {
+    const stats = fs.statSync(filePath);
+    const now = new Date().getTime();
+    const fileTime = new Date(stats.mtime).getTime();
+    return (now - fileTime) < CACHE_DURATION;
+  } catch (error) {
+    return false;
+  }
+}
+
+// Dynamic thumbnail generation endpoint with caching
+app.get('/api/thumbnail', async (req, res) => {
+  try {
+    const { url = 'http://localhost:3000/', width = 1200, height = 630 } = req.query;
+    const cacheKey = generateCacheKey(url, width, height);
+    const cachePath = path.join(CACHE_DIR, `${cacheKey}.png`);
+    
+    // Check if cached version exists and is valid
+    if (fs.existsSync(cachePath) && isCacheValid(cachePath)) {
+      console.log('Serving cached thumbnail for:', url);
+      const cachedImage = fs.readFileSync(cachePath);
+      
+      res.set({
+        'Content-Type': 'image/png',
+        'Content-Length': cachedImage.length,
+        'Cache-Control': 'public, max-age=3600',
+        'X-Cache': 'HIT'
+      });
+      
+      return res.send(cachedImage);
+    }
+    
+    console.log('Generating new thumbnail for:', url);
+    
+    // Launch browser
+    const browser = await puppeteer.launch({
+      headless: 'new',
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-accelerated-2d-canvas',
+        '--no-first-run',
+        '--no-zygote',
+        '--single-process',
+        '--disable-gpu'
+      ]
+    });
+
+    const page = await browser.newPage();
+    
+    // Set viewport
+    await page.setViewport({
+      width: parseInt(width),
+      height: parseInt(height),
+      deviceScaleFactor: 2
+    });
+
+    // Navigate to the page
+    await page.goto(url, {
+      waitUntil: 'networkidle0',
+      timeout: 30000
+    });
+
+    // Wait for fonts and images to load
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    // Take screenshot of the hero section
+    const screenshot = await page.screenshot({
+      type: 'png',
+      clip: {
+        x: 0,
+        y: 0,
+        width: parseInt(width),
+        height: parseInt(height)
+      }
+    });
+
+    await browser.close();
+
+    // Save to cache
+    fs.writeFileSync(cachePath, screenshot);
+    console.log('Thumbnail cached at:', cachePath);
+
+    // Set headers for image response
+    res.set({
+      'Content-Type': 'image/png',
+      'Content-Length': screenshot.length,
+      'Cache-Control': 'public, max-age=3600',
+      'X-Cache': 'MISS'
+    });
+
+    res.send(screenshot);
+
+  } catch (error) {
+    console.error('Error generating thumbnail:', error);
+    res.status(500).json({ error: 'Failed to generate thumbnail' });
+  }
 });
 
 // 404 handler
