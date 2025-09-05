@@ -14,7 +14,7 @@
     <meta property="og:title" content="<%= workbook ? workbook.title + ' - ' : '' %>Table of Contents - Top Voices Workbook">
     <meta property="og:description" content="<%= workbook ? workbook.description : 'Master essential skills with this comprehensive workbook covering strategy, implementation, and best practices.' %>">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.topvoicesworkbook.com<%= workbook ? '/workbook/' + workbook.slug : '' %>">
+    <meta property="og:url" content="https://www.topvoicesworkbook.com<%= workbook ? '/course/' + workbook.slug : '' %>">
     <meta property="og:image" content="https://www.topvoicesworkbook.com/api/thumbnail?url=https://www.topvoicesworkbook.com<%= workbook ? '/course/' + workbook.slug : '' %>">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -206,7 +206,7 @@
                     <!-- Chapters Grid -->
                     <div class="grid gap-4">
                         <% section.chapters.forEach((chapter, index) => { %>
-                            <a href="/workbook/<%= workbook ? workbook.slug : 'unknown' %>/<%= chapter.id %>" 
+                            <a href="/course/<%= workbook ? workbook.slug : 'unknown' %>/<%= chapter.id %>" 
                                class="card p-4 sm:p-6 lg:p-8 hover:shadow-xl transition-all duration-300 group block bg-gradient-to-br from-<%= colorClass %>-500/[0.02] to-<%= colorClass %>-600/[0.02] border-<%= colorClass %>-500/10 hover:border-<%= colorClass %>-500/20">
                                 <div class="flex items-center gap-4 sm:gap-6">
                                     <div class="w-16 h-16 bg-gradient-to-br from-<%= colorClass %>-500/10 to-<%= colorClass %>-600/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-<%= colorClass %>-500 group-hover:text-white transition-all duration-300 border border-<%= colorClass %>-500/20">
@@ -263,7 +263,7 @@
                 </p>
                 <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                     <% if (workbook) { %>
-                    <a href="/workbook/<%= workbook.slug %>/1" class="btn-primary text-base sm:text-lg h-12 sm:h-14 px-6 sm:px-10 justify-center">
+                    <a href="/course/<%= workbook.slug %>/1" class="btn-primary text-base sm:text-lg h-12 sm:h-14 px-6 sm:px-10 justify-center">
                         <i data-lucide="play-circle" class="w-4 sm:w-5 h-4 sm:h-5 mr-2"></i>
                         Start Chapter 1
                     </a>
@@ -290,7 +290,7 @@
         <div class="text-center">
             <div class="text-sm font-medium mb-2">Quick Start</div>
             <% if (workbook) { %>
-            <a href="/workbook/<%= workbook.slug %>/1" class="btn-primary btn-sm">
+            <a href="/course/<%= workbook.slug %>/1" class="btn-primary btn-sm">
                 <i data-lucide="rocket" class="w-4 h-4 mr-1"></i>
                 Start Reading
             </a>
