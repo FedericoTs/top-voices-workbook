@@ -381,7 +381,7 @@ app.get('/api/thumbnail', async (req, res) => {
 // Sitemap.xml endpoint
 app.get('/sitemap.xml', (req, res) => {
   try {
-    const baseUrl = 'https://top-voices-workbook.vercel.app';
+    const baseUrl = `https://${req.get('host')}`;
     const currentDate = new Date().toISOString();
     
     let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
@@ -439,7 +439,7 @@ app.get('/robots.txt', (req, res) => {
 Allow: /
 
 # Sitemap
-Sitemap: https://top-voices-workbook.vercel.app/sitemap.xml
+Sitemap: https://www.topvoicesworkbook.com/sitemap.xml
 
 # Allow important pages
 Allow: /course/
