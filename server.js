@@ -378,6 +378,81 @@ app.get('/api/thumbnail', async (req, res) => {
   }
 });
 
+// Sitemap.xml endpoint
+app.get('/sitemap.xml', (req, res) => {
+  try {
+    const baseUrl = 'https://top-voices-workbook.vercel.app';
+    const currentDate = new Date().toISOString();
+    
+    let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Homepage -->
+  <url>
+    <loc>${baseUrl}/</loc>
+    <lastmod>${currentDate}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+`;
+
+    // Add workbook pages
+    workbooks.forEach((workbook, slug) => {
+      // Table of contents page
+      sitemap += `  <url>
+    <loc>${baseUrl}/course/${slug}</loc>
+    <lastmod>${currentDate}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+`;
+
+      // Individual chapters
+      workbook.chapters.forEach(chapter => {
+        sitemap += `  <url>
+    <loc>${baseUrl}/course/${slug}/${chapter.id}</loc>
+    <lastmod>${currentDate}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+`;
+      });
+    });
+
+    sitemap += `</urlset>`;
+
+    res.set({
+      'Content-Type': 'application/xml',
+      'Cache-Control': 'public, max-age=3600'
+    });
+    
+    res.send(sitemap);
+  } catch (error) {
+    console.error('Error generating sitemap:', error);
+    res.status(500).send('Error generating sitemap');
+  }
+});
+
+// Robots.txt endpoint
+app.get('/robots.txt', (req, res) => {
+  res.type('text/plain');
+  res.send(`User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://top-voices-workbook.vercel.app/sitemap.xml
+
+# Allow important pages
+Allow: /course/
+Allow: /api/thumbnail
+
+# Block unnecessary paths  
+Disallow: /api/
+Allow: /api/thumbnail
+
+# Cache policy
+Crawl-delay: 1`);
+});
+
 // 404 handler
 app.use((req, res) => {
   res.status(404).render('404');

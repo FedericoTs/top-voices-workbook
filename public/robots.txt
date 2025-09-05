@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://top-voices-workbook.vercel.app/sitemap.xml
+
+# Allow important pages
+Allow: /course/
+Allow: /api/thumbnail
+
+# Block unnecessary paths
+Disallow: /api/
+Allow: /api/thumbnail
+
+# Cache policy
+Crawl-delay: 1
