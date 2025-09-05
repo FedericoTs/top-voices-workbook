@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chapter <%= currentChapter %>: <%= chapter?.title %> - Top Voices Workbook</title>
+    <title><%= workbook ? workbook.title + ' - ' : '' %>Chapter <%= currentChapter %>: <%= chapter?.title %> - Top Voices Workbook</title>
     <link href="/styles.css" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-    <meta name="description" content="Master personal branding with this comprehensive course covering strategy, content creation, team building, and monetization.">
+    <meta name="description" content="<%= workbook ? workbook.description.substring(0, 155) : 'Master essential skills with this comprehensive workbook covering strategy, implementation, and best practices.' %>">
     <script>
       window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     </script>
@@ -29,10 +29,12 @@
                 </div>
                 
                 <div class="flex items-center space-x-4">
-                    <a href="/toc" class="btn-outline text-sm">
+                    <% if (workbookSlug) { %>
+                    <a href="/course/<%= workbookSlug %>" class="btn-outline text-sm">
                         <i data-lucide="list" class="w-4 h-4 mr-2"></i>
                         Table of Contents
                     </a>
+                    <% } %>
                     <button id="theme-toggle" class="btn-outline p-2">
                         <i data-lucide="sun" class="w-4 h-4"></i>
                     </button>
@@ -53,10 +55,10 @@
     </div>
     
     <!-- Sidebar -->
-    <aside id="course-sidebar" class="fixed inset-y-0 left-0 z-40 w-80 transform -translate-x-full transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0 lg:sticky lg:top-16 lg:h-[calc(100vh-4rem)] border-r bg-muted/30 overflow-y-auto">
+    <aside id="workbook-sidebar" class="fixed inset-y-0 left-0 z-40 w-80 transform -translate-x-full transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0 lg:sticky lg:top-16 lg:h-[calc(100vh-4rem)] border-r bg-muted/30 overflow-y-auto">
         <!-- Mobile Sidebar Header -->
         <div class="lg:hidden flex items-center justify-between p-4 border-b bg-background">
-            <h2 class="font-heading font-bold text-lg">Course Contents</h2>
+            <h2 class="font-heading font-bold text-lg"><%= workbook ? workbook.title : 'Workbook Contents' %></h2>
             <button id="mobile-sidebar-close" class="btn-outline p-2">
                 <i data-lucide="x" class="w-4 h-4"></i>
             </button>
@@ -65,7 +67,7 @@
             <!-- Progress -->
             <div class="mb-6">
                 <div class="flex items-center justify-between mb-2">
-                    <span class="text-sm font-medium">Course Progress</span>
+                    <span class="text-sm font-medium"><%= workbook ? workbook.title : 'Workbook' %> Progress</span>
                     <span class="text-sm text-muted-foreground"><%= progress || 0 %>%</span>
                 </div>
                 <div class="progress-bar">
@@ -76,7 +78,11 @@
             <!-- Table of Contents -->
             <nav class="space-y-1">
                 <div class="text-sm font-semibold text-muted-foreground mb-3 uppercase tracking-wide">
-                    Course Contents
+                    <% if (workbook && workbook.author) { %>
+                        <%= workbook.author %>'s Workbook
+                    <% } else { %>
+                        Workbook Contents
+                    <% } %>
                 </div>
                 
                 <% toc.forEach(section => { %>
@@ -86,7 +92,7 @@
                         </div>
                         <div class="space-y-1 ml-2">
                             <% section.chapters.forEach(chap => { %>
-                                <a href="/course/<%= chap.id %>" 
+                                <a href="/course/<%= workbookSlug %>/<%= chap.id %>" 
                                    class="nav-item flex items-center px-3 py-2 text-sm rounded-md transition-colors <%= currentChapter === chap.id ? 'nav-active' : '' %>">
                                     <span class="w-6 h-6 rounded-full bg-muted flex items-center justify-center text-xs mr-3 flex-shrink-0">
                                         <%= chap.id %>
@@ -144,7 +150,7 @@
                 <nav class="flex items-center justify-between pt-12 mt-12 border-t">
                     <div>
                         <% if (prevChapter) { %>
-                            <a href="/course/<%= prevChapter.id %>" class="btn-outline group">
+                            <a href="/course/<%= workbookSlug %>/<%= prevChapter.id %>" class="btn-outline group">
                                 <i data-lucide="chevron-left" class="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform"></i>
                                 <div class="text-left">
                                     <div class="text-xs text-muted-foreground">Previous</div>
@@ -155,15 +161,17 @@
                     </div>
                     
                     <div class="text-center">
-                        <a href="/toc" class="btn-secondary">
+                        <% if (workbookSlug) { %>
+                        <a href="/course/<%= workbookSlug %>" class="btn-secondary">
                             <i data-lucide="list" class="w-4 h-4 mr-2"></i>
                             Table of Contents
                         </a>
+                        <% } %>
                     </div>
                     
                     <div>
                         <% if (nextChapter) { %>
-                            <a href="/course/<%= nextChapter.id %>" class="btn-primary group">
+                            <a href="/course/<%= workbookSlug %>/<%= nextChapter.id %>" class="btn-primary group">
                                 <div class="text-right">
                                     <div class="text-xs text-primary-foreground/80">Next</div>
                                     <div class="text-sm font-medium"><%= nextChapter.title.substring(0, 30) %>...</div>
@@ -180,10 +188,17 @@
                     <i data-lucide="book-x" class="w-16 h-16 text-muted-foreground mx-auto mb-4"></i>
                     <h2 class="text-2xl font-heading font-bold mb-2">Chapter Not Found</h2>
                     <p class="text-muted-foreground mb-6">The requested chapter could not be found.</p>
-                    <a href="/course/1" class="btn-primary">
-                        <i data-lucide="home" class="w-4 h-4 mr-2"></i>
-                        Go to First Chapter
+                    <% if (workbookSlug) { %>
+                    <a href="/course/<%= workbookSlug %>" class="btn-primary">
+                        <i data-lucide="list" class="w-4 h-4 mr-2"></i>
+                        Back to Table of Contents
                     </a>
+                    <% } else { %>
+                    <a href="/" class="btn-primary">
+                        <i data-lucide="home" class="w-4 h-4 mr-2"></i>
+                        Back to Home
+                    </a>
+                    <% } %>
                 </div>
             </div>
         <% } %>
@@ -246,39 +261,39 @@
     
     // Mobile sidebar functionality
     const mobileSidebarToggle = document.querySelector('#mobile-sidebar-toggle button');
-    const courseSidebar = document.getElementById('course-sidebar');
+    const workbookSidebar = document.getElementById('workbook-sidebar');
     const mobileSidebarClose = document.getElementById('mobile-sidebar-close');
     const sidebarBackdrop = document.getElementById('sidebar-backdrop');
     
-    function openCourseSidebar() {
+    function openWorkbookSidebar() {
         sidebarBackdrop.classList.remove('hidden');
-        courseSidebar.classList.remove('-translate-x-full');
+        workbookSidebar.classList.remove('-translate-x-full');
         document.body.style.overflow = 'hidden';
     }
     
-    function closeCourseSidebar() {
-        courseSidebar.classList.add('-translate-x-full');
+    function closeWorkbookSidebar() {
+        workbookSidebar.classList.add('-translate-x-full');
         sidebarBackdrop.classList.add('hidden');
         document.body.style.overflow = '';
     }
     
     // Mobile sidebar event listeners
-    mobileSidebarToggle?.addEventListener('click', openCourseSidebar);
-    mobileSidebarClose?.addEventListener('click', closeCourseSidebar);
-    sidebarBackdrop?.addEventListener('click', closeCourseSidebar);
+    mobileSidebarToggle?.addEventListener('click', openWorkbookSidebar);
+    mobileSidebarClose?.addEventListener('click', closeWorkbookSidebar);
+    sidebarBackdrop?.addEventListener('click', closeWorkbookSidebar);
     
     // Close sidebar on escape key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && !sidebarBackdrop.classList.contains('hidden')) {
-            closeCourseSidebar();
+            closeWorkbookSidebar();
         }
     });
     
     // Close sidebar when clicking on navigation links (mobile)
-    document.querySelectorAll('#course-sidebar a').forEach(link => {
+    document.querySelectorAll('#workbook-sidebar a').forEach(link => {
         link.addEventListener('click', () => {
             if (window.innerWidth < 1024) { // Only on mobile
-                closeCourseSidebar();
+                closeWorkbookSidebar();
             }
         });
     });

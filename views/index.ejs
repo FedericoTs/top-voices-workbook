@@ -3,35 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top Voices Workbook - Master Your Brand Strategy</title>
+    <title>Top Voices Workbook - Transform Video Content into Structured Learning</title>
     <link href="/styles.css" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-    <meta name="description" content="Master personal branding with these comprehensive notes from Caleb Ralston's YouTube masterclass covering strategy, content creation, team building, and monetization.">
+    <meta name="description" content="Transform long-form educational videos into structured, readable workbooks. Access comprehensive notes from marketing legends covering branding, psychology, and business strategy.">
     
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Top Voices Workbook - Master Your Brand Strategy">
-    <meta property="og:description" content="Master personal branding with these comprehensive notes from Caleb Ralston's YouTube masterclass covering strategy, content creation, team building, and monetization.">
+    <meta property="og:title" content="Top Voices Workbook - Transform Video Content into Structured Learning">
+    <meta property="og:description" content="Transform long-form educational videos into structured, readable workbooks. Access comprehensive notes from marketing legends covering branding, psychology, and business strategy.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://top-voices-workbook.vercel.app/">
     <meta property="og:image" content="https://top-voices-workbook.vercel.app/caleb-photo.webp">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Caleb Ralston - Personal Branding Expert">
+    <meta property="og:image:alt" content="Top Voices Workbook - Educational Content Platform">
     <meta property="og:site_name" content="Top Voices Workbook">
     <meta property="og:locale" content="en_US">
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Top Voices Workbook - Master Your Brand Strategy">
-    <meta name="twitter:description" content="Master personal branding with these comprehensive notes from Caleb Ralston's YouTube masterclass covering strategy, content creation, team building, and monetization.">
+    <meta name="twitter:title" content="Top Voices Workbook - Transform Video Content into Structured Learning">
+    <meta name="twitter:description" content="Transform long-form educational videos into structured, readable workbooks. Access comprehensive notes from marketing legends covering branding, psychology, and business strategy.">
     <meta name="twitter:image" content="https://top-voices-workbook.vercel.app/caleb-photo.webp">
-    <meta name="twitter:image:alt" content="Caleb Ralston - Personal Branding Expert">
-    
-    <!-- LinkedIn specific -->
-    <meta property="article:author" content="Caleb Ralston">
-    <meta property="article:section" content="Personal Branding">
+    <meta name="twitter:image:alt" content="Top Voices Workbook - Educational Content Platform">
     
     <script>
       window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
@@ -64,10 +60,6 @@
 
 <!-- Hero Section -->
 <section class="relative overflow-hidden bg-gradient-to-br from-background via-background to-muted/20">
-    <!-- Background Image -->
-    <div class="absolute inset-0 z-0">
-        <img src="/caleb-photo.webp" alt="Caleb Ralston" class="w-full h-full object-cover hero-bg-mobile">
-    </div>
     
     <!-- Content -->
     <div class="relative z-10 container mx-auto px-4 py-20">
@@ -75,80 +67,123 @@
             <!-- Left side - Text Content -->
             <div class="animate-on-scroll">
                 <div class="badge bg-primary/10 text-primary border-primary/20 mb-6">
-                    📝 Complete Brand Building Workbook
+                    📚 Educational Content Platform
                 </div>
                     
                 <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-heading font-bold leading-tight mb-6">
-                    Master Your
+                    Learn from
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">
-                        Personal Brand
+                        Top Voices
                     </span>
                 </h1>
                     
                 <p class="text-base sm:text-lg lg:text-xl text-muted-foreground mb-8 leading-relaxed">
-                    Transform your expertise into a powerful personal brand with these comprehensive notes 
-                    covering brand strategy, content creation, team building, and monetization.
+                    Transform lengthy educational videos into structured, readable workbooks. Access comprehensive notes 
+                    from marketing legends and industry experts covering branding, psychology, and business strategy.
                 </p>
                 
                 <div class="flex flex-wrap items-center gap-6 text-sm text-muted-foreground mb-8">
                     <div class="flex items-center gap-2">
                         <i data-lucide="book-open" class="w-4 h-4"></i>
-                        <span><%= totalChapters %> Chapters</span>
+                        <span><%= workbooks.length %> Workbooks</span>
                     </div>
                     <div class="flex items-center gap-2">
-                        <i data-lucide="layers" class="w-4 h-4"></i>
-                        <span>4 Sections</span>
+                        <i data-lucide="users" class="w-4 h-4"></i>
+                        <span>Expert Authors</span>
                     </div>
                     <div class="flex items-center gap-2">
-                        <i data-lucide="clock" class="w-4 h-4"></i>
-                        <span>6+ Hours</span>
+                        <i data-lucide="zap" class="w-4 h-4"></i>
+                        <span>Actionable Content</span>
                     </div>
                 </div>
                 
                 <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 relative z-30">
-                    <a href="/course/1" class="btn-primary text-base sm:text-lg h-12 sm:h-14 px-6 sm:px-10 relative z-30 justify-center">
+                    <% if (workbooks.length > 0) { %>
+                    <a href="/course/<%= workbooks[0].slug %>" class="btn-primary text-base sm:text-lg h-12 sm:h-14 px-6 sm:px-10 relative z-30 justify-center">
                         <i data-lucide="book-open" class="w-4 sm:w-5 h-4 sm:h-5 mr-2"></i>
-                        Start Reading
+                        Start Learning
                     </a>
-                    <a href="/toc" class="btn-outline text-base sm:text-lg h-12 sm:h-14 px-6 sm:px-10 relative z-30 justify-center">
+                    <% } %>
+                    <a href="#workbooks" class="btn-outline text-base sm:text-lg h-12 sm:h-14 px-6 sm:px-10 relative z-30 justify-center">
                         <i data-lucide="list" class="w-4 sm:w-5 h-4 sm:h-5 mr-2"></i>
-                        View Contents
+                        Browse Workbooks
                     </a>
                 </div>
             </div>
             
-            <!-- Right side - Space for image visibility -->
-            <div class="hidden lg:block"></div>
-        </div>
-    </div>
-    
-    <!-- YouTube Attribution Box - Desktop Only -->
-    <div class="absolute bottom-20 z-10 w-full pointer-events-none hidden sm:block">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-end">
-                <div class="rounded-xl p-4 bg-white/90 backdrop-blur-md shadow-xl border border-white/20 max-w-sm pointer-events-auto">
-            <!-- Compact Header -->
-            <div class="flex items-center justify-between mb-3">
-                <a href="https://www.calebralston.com/" target="_blank" rel="noopener noreferrer">
-                    <img src="/RAL_Logo_Primary-Horizontal_Dark_Transparent.webp" alt="RAL Logo" class="h-6 hover:opacity-80 transition-opacity">
-                </a>
-                <div class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-green-500/20 text-green-700 border border-green-500/30">
-                    ✨ FREE
-                </div>
-            </div>
-            
-            <!-- Compact Content -->
-            <p class="text-xs text-gray-600 mb-3 leading-relaxed">
-                Based on Caleb's 6-hour YouTube masterclass
-            </p>
-            
-            <a href="https://www.youtube.com/watch?v=Ch4Sl0POBhU&ab_channel=CalebRalston" 
-               target="_blank" 
-               rel="noopener noreferrer"
-               class="inline-flex items-center justify-center w-full px-3 py-2 text-xs font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors duration-200">
-                <i data-lucide="youtube" class="w-3 h-3 mr-1"></i>
-                Watch Original
-            </a>
+            <!-- Right side - Workbook Preview -->
+            <div class="hidden lg:flex justify-center items-center animate-on-scroll">
+                <div class="relative">
+                    <!-- Main Preview Card -->
+                    <div class="card p-6 w-80 bg-gradient-to-br from-background to-muted/20 shadow-2xl border-2 border-primary/10 transform rotate-3 hover:rotate-0 transition-all duration-500">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+                                <i data-lucide="bookmark" class="w-5 h-5 text-primary-foreground"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-heading font-bold text-sm">Top Voices Workbook</h3>
+                                <p class="text-xs text-muted-foreground">Structured Learning</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Mini Chapter Preview -->
+                        <div class="space-y-2 mb-4">
+                            <% if (workbooks && workbooks.length > 0) { %>
+                            <div class="flex items-center gap-2 text-xs text-muted-foreground">
+                                <div class="w-4 h-4 bg-primary/10 rounded flex items-center justify-center">
+                                    <span class="text-[10px] font-bold text-primary">1</span>
+                                </div>
+                                <span class="truncate">Introduction & Fundamentals</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-xs text-muted-foreground">
+                                <div class="w-4 h-4 bg-primary/10 rounded flex items-center justify-center">
+                                    <span class="text-[10px] font-bold text-primary">2</span>
+                                </div>
+                                <span class="truncate">Strategic Framework</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-xs text-muted-foreground">
+                                <div class="w-4 h-4 bg-primary/10 rounded flex items-center justify-center">
+                                    <span class="text-[10px] font-bold text-primary">3</span>
+                                </div>
+                                <span class="truncate">Implementation Guide</span>
+                            </div>
+                            <div class="text-xs text-muted-foreground pl-6">...and <%= workbooks.reduce((sum, wb) => sum + wb.totalChapters, 0) - 3 %> more chapters</div>
+                            <% } %>
+                        </div>
+                        
+                        <!-- Stats -->
+                        <div class="flex items-center justify-between text-xs text-muted-foreground border-t pt-3">
+                            <div class="flex items-center gap-1">
+                                <i data-lucide="users" class="w-3 h-3"></i>
+                                <span><%= workbooks ? workbooks.length : 0 %> Authors</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <i data-lucide="clock" class="w-3 h-3"></i>
+                                <span>Hours of Content</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Background Cards for Depth -->
+                    <div class="absolute -top-2 -left-2 w-80 h-full bg-gradient-to-br from-primary/5 to-blue-500/5 rounded-lg -z-10 transform rotate-6"></div>
+                    <div class="absolute -top-4 -left-4 w-80 h-full bg-gradient-to-br from-muted/30 to-muted/10 rounded-lg -z-20 transform rotate-12"></div>
+                    
+                    <!-- Floating Elements -->
+                    <div class="absolute -top-8 right-4 w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center animate-pulse">
+                        <i data-lucide="zap" class="w-8 h-8 text-primary"></i>
+                    </div>
+                    
+                    <div class="absolute -bottom-6 -right-6 w-12 h-12 bg-green-500/10 rounded-full flex items-center justify-center">
+                        <i data-lucide="check-circle" class="w-6 h-6 text-green-500"></i>
+                    </div>
+                    
+                    <!-- Stats Bubbles -->
+                    <div class="absolute top-1/2 -left-12 transform -translate-y-1/2">
+                        <div class="bg-background/90 backdrop-blur-sm border border-primary/20 rounded-lg p-2 text-center shadow-lg">
+                            <div class="text-lg font-bold text-primary"><%= workbooks ? workbooks.reduce((sum, wb) => sum + wb.totalChapters, 0) : '50+' %></div>
+                            <div class="text-xs text-muted-foreground">Chapters</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -159,178 +194,191 @@
     <div class="absolute bottom-20 left-20 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
 </section>
 
-<!-- Mobile YouTube Attribution Box -->
-<section class="sm:hidden py-6">
-    <div class="container mx-auto px-4">
-        <div class="flex justify-center">
-            <div class="rounded-xl p-4 bg-white/90 backdrop-blur-md shadow-xl border border-white/20 max-w-sm w-full">
-                <!-- Compact Header -->
-                <div class="flex items-center justify-between mb-3">
-                    <a href="https://www.calebralston.com/" target="_blank" rel="noopener noreferrer">
-                        <img src="/RAL_Logo_Primary-Horizontal_Dark_Transparent.webp" alt="RAL Logo" class="h-6 hover:opacity-80 transition-opacity">
-                    </a>
-                    <div class="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-green-500/20 text-green-700 border border-green-500/30">
-                        ✨ FREE
-                    </div>
-                </div>
-                
-                <!-- Compact Content -->
-                <p class="text-xs text-gray-600 mb-3 leading-relaxed">
-                    Based on Caleb's 6-hour YouTube masterclass
-                </p>
-                
-                <a href="https://www.youtube.com/watch?v=Ch4Sl0POBhU&ab_channel=CalebRalston" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   class="inline-flex items-center justify-center w-full px-3 py-2 text-xs font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors duration-200">
-                    <i data-lucide="youtube" class="w-3 h-3 mr-1"></i>
-                    Watch Original
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Workbook Sections -->
-<section class="py-20 bg-muted/30">
+<!-- Available Workbooks Section -->
+<section id="workbooks" class="py-20 bg-muted/30">
     <div class="container mx-auto px-4">
         <div class="text-center mb-16 animate-on-scroll">
             <h2 class="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold mb-4">
-                Complete Brand Building Notes
+                Available Workbooks
             </h2>
             <p class="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto">
-                Everything from Caleb's masterclass - structured notes to build, grow, and monetize your personal brand
+                Choose from our collection of expertly curated workbooks, each transforming hours of video content into structured learning experiences
             </p>
         </div>
         
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 stagger-in">
-            <div class="card p-6 animate-on-scroll hover:shadow-lg transition-all duration-300">
-                <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                    <i data-lucide="target" class="w-6 h-6 text-primary"></i>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 stagger-in">
+            <% workbooks.forEach((workbook, index) => { %>
+            <div class="card p-8 animate-on-scroll hover:shadow-xl transition-all duration-300 group relative overflow-hidden">
+                <!-- Workbook Background Images -->
+                <% if (workbook.slug === 'personal-branding-caleb-ralston') { %>
+                <!-- Caleb's Personal Branding workbook background -->
+                <div class="absolute inset-0 z-0">
+                    <img src="/caleb-photo.webp" alt="<%= workbook.author %>" class="w-full h-full object-cover object-top">
                 </div>
-                <h3 class="font-heading font-bold text-lg mb-3">Brand Foundation</h3>
-                <p class="text-muted-foreground text-sm mb-4">
-                    Define your brand identity, positioning, and core messaging that resonates with your audience.
-                </p>
-                <div class="text-xs text-muted-foreground">Chapters 1-6</div>
-            </div>
-            
-            <div class="card p-6 animate-on-scroll hover:shadow-lg transition-all duration-300">
-                <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                    <i data-lucide="edit-3" class="w-6 h-6 text-primary"></i>
+                <!-- Strong overlay for text readability -->
+                <div class="absolute inset-0 z-10 bg-gradient-to-br from-background/95 via-background/90 to-background/85"></div>
+                <% } else if (workbook.slug === 'magnetic-brand-seth-godin') { %>
+                <!-- Seth Godin's workbook background -->
+                <div class="absolute top-[25px] right-0 w-[75%] h-[75%] z-0" style="transform: translateX(200px);">
+                    <img src="/seth-godin-photo.png" alt="<%= workbook.author %>" class="w-full h-full object-cover object-top">
                 </div>
-                <h3 class="font-heading font-bold text-lg mb-3">Content Strategy</h3>
-                <p class="text-muted-foreground text-sm mb-4">
-                    Master content creation, platform selection, storytelling, and community building.
-                </p>
-                <div class="text-xs text-muted-foreground">Chapters 7-13</div>
-            </div>
-            
-            <div class="card p-6 animate-on-scroll hover:shadow-lg transition-all duration-300">
-                <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                    <i data-lucide="users" class="w-6 h-6 text-primary"></i>
+                <!-- Strong overlay for text readability -->
+                <div class="absolute inset-0 z-10 bg-gradient-to-br from-background/95 via-background/90 to-background/85"></div>
+                <% } %>
+                
+                <!-- Workbook Header -->
+                <div class="flex items-start justify-between mb-6 relative z-20">
+                    <div class="flex-1">
+                        <div class="flex items-center gap-1.5 mb-3 overflow-hidden">
+                            <% workbook.tags.slice(0, 4).forEach(tag => { %>
+                            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary whitespace-nowrap">
+                                <%= tag %>
+                            </span>
+                            <% }); %>
+                            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-muted text-muted-foreground whitespace-nowrap">
+                                <%= workbook.difficulty %>
+                            </span>
+                        </div>
+                        <h3 class="font-heading font-bold text-xl mb-2 group-hover:text-primary transition-colors">
+                            <%= workbook.title %>
+                        </h3>
+                        <% if (workbook.subtitle) { %>
+                        <p class="text-sm text-muted-foreground mb-3"><%= workbook.subtitle %></p>
+                        <% } %>
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="text-sm text-muted-foreground">by</span>
+                            <a href="<%= workbook.authorWebsite %>" target="_blank" rel="noopener noreferrer" 
+                               class="text-sm font-medium text-primary hover:text-primary/80 transition-colors">
+                                <%= workbook.author %>
+                            </a>
+                            <a href="<%= workbook.authorWebsite %>" target="_blank" rel="noopener noreferrer" 
+                               class="text-muted-foreground hover:text-primary transition-colors">
+                                <i data-lucide="external-link" class="w-3 h-3"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <h3 class="font-heading font-bold text-lg mb-3">Team Building</h3>
-                <p class="text-muted-foreground text-sm mb-4">
-                    Learn to hire, manage, and scale your team for sustainable growth and success.
+                
+                <!-- Workbook Description -->
+                <p class="text-muted-foreground mb-6 line-clamp-3 relative z-20">
+                    <%= workbook.description %>
                 </p>
-                <div class="text-xs text-muted-foreground">Chapters 14-22</div>
-            </div>
-            
-            <div class="card p-6 animate-on-scroll hover:shadow-lg transition-all duration-300">
-                <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                    <i data-lucide="dollar-sign" class="w-6 h-6 text-primary"></i>
+                
+                <!-- Workbook Stats -->
+                <div class="flex flex-wrap items-center gap-6 text-sm text-muted-foreground mb-6 relative z-20">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="book-open" class="w-4 h-4"></i>
+                        <span><%= workbook.totalChapters %> Chapters</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="clock" class="w-4 h-4"></i>
+                        <span><%= workbook.duration %></span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="layers" class="w-4 h-4"></i>
+                        <span><%= Object.keys(workbook.sections).length %> Sections</span>
+                    </div>
                 </div>
-                <h3 class="font-heading font-bold text-lg mb-3">Monetization</h3>
-                <p class="text-muted-foreground text-sm mb-4">
-                    Transform your brand into revenue through proven monetization strategies and offer stacks.
-                </p>
-                <div class="text-xs text-muted-foreground">Chapters 23-29</div>
+                
+                <!-- Sample Chapters -->
+                <div class="mb-6 relative z-20">
+                    <h4 class="font-semibold text-sm mb-3 text-muted-foreground">PREVIEW CHAPTERS</h4>
+                    <div class="space-y-2">
+                        <% workbook.firstChapters.forEach(chapter => { %>
+                        <div class="flex items-center gap-3 text-sm">
+                            <div class="w-6 h-6 bg-primary/10 rounded-md flex items-center justify-center flex-shrink-0">
+                                <span class="text-xs font-bold text-primary"><%= chapter.id %></span>
+                            </div>
+                            <span class="text-muted-foreground truncate"><%= chapter.title %></span>
+                        </div>
+                        <% }); %>
+                        <% if (workbook.totalChapters > 3) { %>
+                        <div class="text-xs text-muted-foreground pl-9">
+                            ...and <%= workbook.totalChapters - 3 %> more chapters
+                        </div>
+                        <% } %>
+                    </div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-3 relative z-20">
+                    <a href="/course/<%= workbook.slug %>/1" 
+                       class="btn-primary text-sm h-10 px-4 justify-center flex-1">
+                        <i data-lucide="play" class="w-4 h-4 mr-2"></i>
+                        Start Reading
+                    </a>
+                    <a href="/course/<%= workbook.slug %>" 
+                       class="btn-outline text-sm h-10 px-4 justify-center">
+                        <i data-lucide="list" class="w-4 h-4 mr-2"></i>
+                        View Contents
+                    </a>
+                </div>
+                
+                <!-- Source Attribution -->
+                <div class="mt-4 pt-3 border-t border-muted/20 relative z-20">
+                    <div class="flex items-center justify-between text-xs text-muted-foreground">
+                        <div class="flex items-center gap-1">
+                            <i data-lucide="video" class="w-3 h-3"></i>
+                            <span>Based on original content</span>
+                        </div>
+                        <% if (workbook.sourceVideo) { %>
+                        <a href="<%= workbook.sourceVideo %>" target="_blank" rel="noopener noreferrer"
+                           class="flex items-center gap-1 hover:text-red-500 transition-colors">
+                            <i data-lucide="youtube" class="w-3 h-3"></i>
+                            <span>Watch Original</span>
+                        </a>
+                        <% } %>
+                    </div>
+                </div>
+                
+                <!-- Background decoration -->
+                <div class="absolute top-4 right-4 w-16 h-16 bg-primary/5 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
             </div>
+            <% }); %>
         </div>
     </div>
 </section>
 
-<!-- Featured Chapters -->
+<!-- Platform Features -->
 <section class="py-20">
     <div class="container mx-auto px-4">
         <div class="text-center mb-16 animate-on-scroll">
             <h2 class="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold mb-4">
-                Start Reading
+                Why Choose Our Workbooks?
             </h2>
-            <p class="text-base sm:text-lg lg:text-xl text-muted-foreground">
-                Browse the structured notes from the first chapters
+            <p class="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto">
+                We transform lengthy video content into structured, actionable learning experiences
             </p>
         </div>
         
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
-            <% chapters.slice(0, 6).forEach((chapter, index) => { %>
-            <div class="card p-6 animate-on-scroll hover:shadow-lg transition-all duration-300 group">
-                <div class="flex items-start space-x-4">
-                    <div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                        <span class="font-bold text-sm"><%= chapter.id %></span>
-                    </div>
-                    <div class="flex-1">
-                        <h3 class="font-heading font-bold text-lg mb-2 group-hover:text-primary transition-colors">
-                            <%= chapter.title %>
-                        </h3>
-                        <p class="text-muted-foreground text-sm mb-4 line-clamp-2">
-                            <% 
-                            // Extract first sentence or paragraph
-                            const plainText = chapter.content.replace(/[#*`]/g, '').substring(0, 120);
-                            %>
-                            <%= plainText %>...
-                        </p>
-                        <a href="/course/<%= chapter.id %>" class="text-primary hover:text-primary/80 text-sm font-medium inline-flex items-center">
-                            Read Chapter
-                            <i data-lucide="arrow-right" class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <% }); %>
-        </div>
-        
-        <div class="text-center mt-12 animate-on-scroll">
-            <a href="/course/1" class="btn-primary text-base h-12 px-8">
-                <i data-lucide="book-open" class="w-5 h-5 mr-2"></i>
-                Start Reading Now
-            </a>
-        </div>
-    </div>
-</section>
-
-<!-- Key Features -->
-<section class="py-20 bg-gradient-to-br from-primary/5 to-blue-500/5">
-    <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            <div class="text-center animate-on-scroll">
-                <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <i data-lucide="brain" class="w-8 h-8 text-primary"></i>
-                </div>
-                <h3 class="font-heading font-bold text-xl mb-4">Real-World Experience</h3>
-                <p class="text-muted-foreground">
-                    Learn from 16+ years of hands-on experience building brands for top creators and entrepreneurs.
-                </p>
-            </div>
-            
             <div class="text-center animate-on-scroll">
                 <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                     <i data-lucide="zap" class="w-8 h-8 text-primary"></i>
                 </div>
-                <h3 class="font-heading font-bold text-xl mb-4">Actionable Strategies</h3>
+                <h3 class="font-heading font-bold text-xl mb-4">Time-Saving Format</h3>
                 <p class="text-muted-foreground">
-                    Every chapter includes practical frameworks, real examples, and step-by-step implementation guides.
+                    Skip the video scrubbing. Get straight to the insights with structured, searchable notes.
                 </p>
             </div>
             
             <div class="text-center animate-on-scroll">
                 <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <i data-lucide="trending-up" class="w-8 h-8 text-primary"></i>
+                    <i data-lucide="brain" class="w-8 h-8 text-primary"></i>
                 </div>
-                <h3 class="font-heading font-bold text-xl mb-4">Proven Results</h3>
+                <h3 class="font-heading font-bold text-xl mb-4">Expert Curation</h3>
                 <p class="text-muted-foreground">
-                    Based on strategies that have generated millions in revenue and built successful personal brands.
+                    Learn from industry legends and top voices who have built successful businesses and brands.
+                </p>
+            </div>
+            
+            <div class="text-center animate-on-scroll">
+                <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i data-lucide="bookmark" class="w-8 h-8 text-primary"></i>
+                </div>
+                <h3 class="font-heading font-bold text-xl mb-4">Structured Learning</h3>
+                <p class="text-muted-foreground">
+                    Content organized into logical chapters and sections for progressive learning and easy reference.
                 </p>
             </div>
         </div>
@@ -338,23 +386,25 @@
 </section>
 
 <!-- CTA Section -->
-<section class="py-20">
+<section class="py-20 bg-gradient-to-br from-primary/5 to-blue-500/5">
     <div class="container mx-auto px-4 text-center">
         <div class="max-w-2xl mx-auto animate-on-scroll">
             <h2 class="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold mb-6">
-                Ready to Build Your Brand?
+                Ready to Start Learning?
             </h2>
             <p class="text-base sm:text-lg lg:text-xl text-muted-foreground mb-8">
-                Join thousands of entrepreneurs who have transformed their expertise into powerful personal brands.
+                Join others who are transforming their knowledge with structured, actionable content from industry experts.
             </p>
             <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-                <a href="/course/1" class="btn-primary text-base sm:text-lg h-12 sm:h-14 px-6 sm:px-8 justify-center">
+                <% if (workbooks.length > 0) { %>
+                <a href="/course/<%= workbooks[0].slug %>/1" class="btn-primary text-base sm:text-lg h-12 sm:h-14 px-6 sm:px-8 justify-center">
                     <i data-lucide="book-open" class="w-4 sm:w-5 h-4 sm:h-5 mr-2"></i>
-                    Start Reading Notes
+                    Start with <%= workbooks[0].author %>'s Workbook
                 </a>
-                <a href="/toc" class="btn-outline text-base sm:text-lg h-12 sm:h-14 px-6 sm:px-8 justify-center">
+                <% } %>
+                <a href="#workbooks" class="btn-outline text-base sm:text-lg h-12 sm:h-14 px-6 sm:px-8 justify-center">
                     <i data-lucide="eye" class="w-4 sm:w-5 h-4 sm:h-5 mr-2"></i>
-                    Preview Workbook Content
+                    Browse All Workbooks
                 </a>
             </div>
         </div>
@@ -366,27 +416,28 @@
         <div class="container mx-auto px-4 py-12">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
-                    <h3 class="font-heading font-bold text-lg mb-4">Personal Brand Workbook</h3>
+                    <h3 class="font-heading font-bold text-lg mb-4">Top Voices Workbook</h3>
                     <p class="text-muted-foreground text-sm">
-                        A comprehensive guide to building your personal brand, creating compelling content, 
-                        and building a successful business around your expertise.
+                        Transform lengthy educational videos into structured, actionable learning experiences. 
+                        Learn from industry experts and marketing legends.
                     </p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4 text-primary">Available Workbooks</h4>
+                    <div class="space-y-2 text-sm">
+                        <% workbooks.forEach(workbook => { %>
+                        <a href="/course/<%= workbook.slug %>" class="block text-muted-foreground hover:text-foreground transition-colors">
+                            <%= workbook.author %>: <%= workbook.title %>
+                        </a>
+                        <% }); %>
+                    </div>
                 </div>
                 <div>
                     <h4 class="font-semibold mb-4 text-primary">Quick Links</h4>
                     <div class="space-y-2 text-sm">
-                        <a href="/course/1" class="block text-muted-foreground hover:text-foreground transition-colors">Start Reading</a>
-                        <a href="/toc" class="block text-muted-foreground hover:text-foreground transition-colors">Table of Contents</a>
-                        <a href="/" class="block text-muted-foreground hover:text-foreground transition-colors">Overview</a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4 text-primary">Workbook Sections</h4>
-                    <div class="space-y-2 text-sm text-muted-foreground">
-                        <div>• Brand Foundation</div>
-                        <div>• Content Strategy</div>
-                        <div>• Team Building</div>
-                        <div>• Monetization</div>
+                        <a href="/" class="block text-muted-foreground hover:text-foreground transition-colors">Home</a>
+                        <a href="#workbooks" class="block text-muted-foreground hover:text-foreground transition-colors">Browse Workbooks</a>
+                        <a href="/api/workbooks" class="block text-muted-foreground hover:text-foreground transition-colors">API</a>
                     </div>
                 </div>
             </div>

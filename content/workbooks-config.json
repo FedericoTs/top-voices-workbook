@@ -1,0 +1,62 @@
+{
+  "workbooks": [
+    {
+      "slug": "personal-branding-caleb-ralston",
+      "title": "Personal Brand Building Workbook",
+      "subtitle": "Enhanced Edition",
+      "author": "Caleb Ralston",
+      "description": "A comprehensive guide to building an intentional, lasting personal brand based on 16 years of industry experience. Learn the systematic approach to creating a brand that attracts opportunities and builds authentic connections.",
+      "filename": "personal-branding-caleb-ralston.md",
+      "image": "caleb-photo.webp",
+      "authorImage": "RAL_Logo_Primary-Horizontal_Dark_Transparent.webp",
+      "authorWebsite": "https://calebralston.com",
+      "sourceVideo": "https://www.youtube.com/watch?v=Ch4Sl0POBhU",
+      "sourceTitle": "How to Build a Personal Brand (6-Hour Masterclass)",
+      "duration": "6 hours",
+      "totalChapters": 29,
+      "sections": {
+        "1-8": "Foundation",
+        "9-16": "Strategy", 
+        "17-24": "Content",
+        "25-29": "Team & Monetization"
+      },
+      "sectionMapping": {
+        "1": "Foundation", "2": "Foundation", "3": "Foundation", "4": "Foundation", "5": "Foundation", "6": "Foundation", "7": "Foundation", "8": "Foundation",
+        "9": "Strategy", "10": "Strategy", "11": "Strategy", "12": "Strategy", "13": "Strategy", "14": "Strategy", "15": "Strategy", "16": "Strategy",
+        "17": "Content", "18": "Content", "19": "Content", "20": "Content", "21": "Content", "22": "Content", "23": "Content", "24": "Content",
+        "25": "Team & Monetization", "26": "Team & Monetization", "27": "Team & Monetization", "28": "Team & Monetization", "29": "Team & Monetization"
+      },
+      "tags": ["Branding", "Strategy", "Content", "Growth"],
+      "difficulty": "Intermediate"
+    },
+    {
+      "slug": "magnetic-brand-seth-godin",
+      "title": "Building a Magnetic Brand That Sells Itself",
+      "subtitle": "A Comprehensive Analysis of Modern Marketing Philosophy and Practice",
+      "author": "Seth Godin",
+      "description": "Learn from marketing legend Seth Godin how to build brands that naturally attract customers rather than chase them. Discover the fundamental principles of trust-based marketing and remarkable product creation.",
+      "filename": "magnetic-brand-seth-godin.md",
+      "image": "seth-godin-photo.png",
+      "authorImage": "seth-godin-logo.webp",
+      "authorWebsite": "https://seths.blog",
+      "sourceVideo": "https://www.youtube.com/watch?v=SbHDPJNYHek&ab_channel=THE505PODCAST",
+      "sourceTitle": "Building a Magnetic Brand Discussion",
+      "duration": "1.5 hours",
+      "totalChapters": 24,
+      "sections": {
+        "1-6": "Foundations - Understanding Modern Marketing Psychology",
+        "7-12": "Relationships - Building Authentic Customer Connections",
+        "13-20": "Strategy - Competitive Positioning and Brand Development",
+        "21-24": "Implementation - Execution, Measurement, and Future Evolution"
+      },
+      "sectionMapping": {
+        "1": "Foundations", "2": "Foundations", "3": "Foundations", "4": "Foundations", "5": "Foundations", "6": "Foundations",
+        "7": "Relationships", "8": "Relationships", "9": "Relationships", "10": "Relationships", "11": "Relationships", "12": "Relationships",
+        "13": "Strategy", "14": "Strategy", "15": "Strategy", "16": "Strategy", "17": "Strategy", "18": "Strategy", "19": "Strategy", "20": "Strategy",
+        "21": "Implementation", "22": "Implementation", "23": "Implementation", "24": "Implementation"
+      },
+      "tags": ["Marketing", "Branding", "Psychology", "Strategy"],
+      "difficulty": "Advanced"
+    }
+  ]
+}
