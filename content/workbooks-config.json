@@ -57,6 +57,35 @@
       },
       "tags": ["Marketing", "Branding", "Psychology", "Strategy"],
       "difficulty": "Advanced"
+    },
+    {
+      "slug": "dan-martell-0-to-100m",
+      "title": "From 0 to $100M: The Complete Wealth Building System",
+      "subtitle": "A Comprehensive Guide to Building a Nine-Figure Business",
+      "author": "Dan Martell",
+      "description": "Master the systematic approach to building $100 million businesses from the ground up. Learn the proven strategies, frameworks, and mindsets used by successful entrepreneurs to create lasting wealth and impact.",
+      "filename": "dan-martell-0-to-100m.md",
+      "image": "dan-martell-photo.webp",
+      "authorImage": "dan-martell-photo.webp",
+      "authorWebsite": "https://danmartell.com",
+      "sourceVideo": "https://www.youtube.com/watch?v=KPj2pnC4v1U&ab_channel=DanMartell",
+      "sourceTitle": "From 0 to $100M: The Complete Business Building Guide",
+      "duration": "2.5 hours",
+      "totalChapters": 10,
+      "sections": {
+        "1-2": "Foundation - Money Rules and Psychology",
+        "3-4": "Skills - Building Leverage and Expertise", 
+        "5-6": "Strategy - Business Models and Market Selection",
+        "7-10": "Wealth - Investment, Knowledge, and Implementation"
+      },
+      "sectionMapping": {
+        "1": "Foundation", "2": "Foundation",
+        "3": "Skills", "4": "Skills",
+        "5": "Strategy", "6": "Strategy",
+        "7": "Wealth", "8": "Wealth", "9": "Wealth", "10": "Wealth"
+      },
+      "tags": ["Entrepreneurship", "Wealth Building", "Business Strategy", "Investment", "Scaling"],
+      "difficulty": "Advanced"
     }
   ]
 }
