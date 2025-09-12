@@ -9,6 +9,54 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <meta name="description" content="<%= workbook ? workbook.description.substring(0, 155) : 'Master essential skills with this comprehensive workbook covering strategy, implementation, and best practices.' %>">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://<%= req.get('host') %>/course/<%= workbookSlug %>/<%= currentChapter %>">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="<%= workbook ? workbook.title + ' - ' : '' %>Chapter <%= currentChapter %>: <%= chapter?.title %>">
+    <meta property="og:description" content="<%= workbook ? workbook.description.substring(0, 155) : 'Master essential skills with this comprehensive workbook covering strategy, implementation, and best practices.' %>">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://<%= req.get('host') %>/course/<%= workbookSlug %>/<%= currentChapter %>">
+    <meta property="og:image" content="https://<%= req.get('host') %>/api/thumbnail?url=https://<%= req.get('host') %>/course/<%= workbookSlug %>/<%= currentChapter %>">
+    <meta property="og:site_name" content="Top Voices Workbook">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<%= workbook ? workbook.title + ' - ' : '' %>Chapter <%= currentChapter %>: <%= chapter?.title %>">
+    <meta name="twitter:description" content="<%= workbook ? workbook.description.substring(0, 155) : 'Master essential skills with this comprehensive workbook covering strategy, implementation, and best practices.' %>">
+    <meta name="twitter:image" content="https://<%= req.get('host') %>/api/thumbnail?url=https://<%= req.get('host') %>/course/<%= workbookSlug %>/<%= currentChapter %>">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Course",
+      "name": "<%= workbook ? workbook.title : '' %>",
+      "description": "<%= workbook ? workbook.description : '' %>",
+      "provider": {
+        "@type": "Organization",
+        "name": "Top Voices Workbook",
+        "url": "https://<%= req.get('host') %>"
+      },
+      "courseCode": "<%= workbookSlug %>",
+      "hasCourseInstance": {
+        "@type": "CourseInstance",
+        "instructor": {
+          "@type": "Person",
+          "name": "<%= workbook ? workbook.author : '' %>",
+          "url": "<%= workbook ? workbook.authorWebsite : '' %>"
+        }
+      },
+      "about": "<%= chapter?.title %>",
+      "url": "https://<%= req.get('host') %>/course/<%= workbookSlug %>/<%= currentChapter %>",
+      "isPartOf": {
+        "@type": "Course",
+        "name": "<%= workbook ? workbook.title : '' %>",
+        "url": "https://<%= req.get('host') %>/course/<%= workbookSlug %>"
+      }
+    }
+    </script>
     <script>
       window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     </script>

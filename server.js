@@ -378,11 +378,24 @@ app.get('/api/thumbnail', async (req, res) => {
   }
 });
 
-// Sitemap.xml endpoint
+// Helper function to escape XML characters
+function escapeXml(unsafe) {
+  return unsafe.replace(/[<>&'"]/g, function (c) {
+    switch (c) {
+      case '<': return '&lt;';
+      case '>': return '&gt;';
+      case '&': return '&amp;';
+      case '\'': return '&apos;';
+      case '"': return '&quot;';
+    }
+  });
+}
+
+// Sitemap.xml endpoint - Simplified version without image elements
 app.get('/sitemap.xml', (req, res) => {
   try {
-    const baseUrl = `https://${req.get('host')}`;
-    const currentDate = new Date().toISOString();
+    const baseUrl = req.get('host').includes('localhost') ? 'http://localhost:3000' : `https://${req.get('host')}`;
+    const currentDate = new Date().toISOString().split('T')[0]; // Use YYYY-MM-DD format
     
     let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -408,6 +421,7 @@ app.get('/sitemap.xml', (req, res) => {
 
       // Individual chapters
       workbook.chapters.forEach(chapter => {
+        const escapedTitle = escapeXml(chapter.title);
         sitemap += `  <url>
     <loc>${baseUrl}/course/${slug}/${chapter.id}</loc>
     <lastmod>${currentDate}</lastmod>
@@ -421,7 +435,7 @@ app.get('/sitemap.xml', (req, res) => {
     sitemap += `</urlset>`;
 
     res.set({
-      'Content-Type': 'application/xml',
+      'Content-Type': 'application/xml; charset=utf-8',
       'Cache-Control': 'public, max-age=3600'
     });
     
@@ -434,12 +448,13 @@ app.get('/sitemap.xml', (req, res) => {
 
 // Robots.txt endpoint
 app.get('/robots.txt', (req, res) => {
+  const baseUrl = req.get('host').includes('localhost') ? 'http://localhost:3000' : `https://${req.get('host')}`;
   res.type('text/plain');
   res.send(`User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://www.topvoicesworkbook.com/sitemap.xml
+Sitemap: ${baseUrl}/sitemap.xml
 
 # Allow important pages
 Allow: /course/

@@ -10,14 +10,52 @@
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <meta name="description" content="<%= workbook ? workbook.description : 'Master essential skills with this comprehensive workbook covering strategy, implementation, and best practices.' %>">
     
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://<%= req.get('host') %>/course/<%= workbook ? workbook.slug : '' %>">
+    
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="<%= workbook ? workbook.title + ' - ' : '' %>Table of Contents - Top Voices Workbook">
     <meta property="og:description" content="<%= workbook ? workbook.description : 'Master essential skills with this comprehensive workbook covering strategy, implementation, and best practices.' %>">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.topvoicesworkbook.com<%= workbook ? '/course/' + workbook.slug : '' %>">
-    <meta property="og:image" content="https://www.topvoicesworkbook.com/og-image.png?v=2">
+    <meta property="og:url" content="https://<%= req.get('host') %><%= workbook ? '/course/' + workbook.slug : '' %>">
+    <meta property="og:image" content="https://<%= req.get('host') %>/api/thumbnail?url=https://<%= req.get('host') %><%= workbook ? '/course/' + workbook.slug : '' %>">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Top Voices Workbook">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<%= workbook ? workbook.title + ' - ' : '' %>Table of Contents - Top Voices Workbook">
+    <meta name="twitter:description" content="<%= workbook ? workbook.description : 'Master essential skills with this comprehensive workbook covering strategy, implementation, and best practices.' %>">
+    <meta name="twitter:image" content="https://<%= req.get('host') %>/api/thumbnail?url=https://<%= req.get('host') %><%= workbook ? '/course/' + workbook.slug : '' %>">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Course",
+      "name": "<%= workbook ? workbook.title : '' %>",
+      "description": "<%= workbook ? workbook.description : '' %>",
+      "provider": {
+        "@type": "Organization",
+        "name": "Top Voices Workbook",
+        "url": "https://<%= req.get('host') %>"
+      },
+      "courseCode": "<%= workbook ? workbook.slug : '' %>",
+      "numberOfChapters": "<%= totalChapters %>",
+      "hasCourseInstance": {
+        "@type": "CourseInstance",
+        "instructor": {
+          "@type": "Person",
+          "name": "<%= workbook ? workbook.author : '' %>",
+          "url": "<%= workbook ? workbook.authorWebsite : '' %>"
+        }
+      },
+      "url": "https://<%= req.get('host') %>/course/<%= workbook ? workbook.slug : '' %>",
+      "coursePrerequisites": "None",
+      "educationalLevel": "Intermediate to Advanced"
+    }
+    </script>
     <meta property="og:image:alt" content="<%= workbook ? workbook.author + ' - ' + workbook.title : 'Top Voices Workbook' %>">
     <meta property="og:site_name" content="Top Voices Workbook">
     <meta property="og:locale" content="en_US">
